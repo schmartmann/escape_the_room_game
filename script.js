@@ -3,56 +3,56 @@ $(function(){
 
 var rooms = [
      {name: 'room-0',
-      position_x: "x",
-      position_y: "y",
+      top: "290px",
+      left: "350px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem nam id, summo commune at mel. Sed possim concludaturque ea?",
       answer: "torquatos"
     },
      {name: 'room-1',
-      position_x: "x + 1",
-      position_y: "y",
+      top: "x + 1",
+      left: "y",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name: 'room-2',
-      position_x: "x + 2",
-      position_y: "y",
+      top: "x + 2",
+      left: "y",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name: 'room-3',
-      position_x: "x - 2",
-      position_y: "y + 1",
+      top: "x - 2",
+      left: "y + 1",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name:'room-4',
-      position_x: "x + 1",
-      position_y: "y + 1",
+      top: "x + 1",
+      left: "y + 1",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
    },
      {name: 'room-5',
-      position_x: "x + 2",
-      position_y: "y + 1",
+      top: "x + 2",
+      left: "y + 1",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
    },
      {name: 'room-6',
-      position_x: "x",
-      position_y: "y + 2",
+      top: "x",
+      left: "y + 2",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   },
      {name: 'room-7',
-      position_x: "x + 1",
-      position_y: "y + 2",
+      top: "x + 1",
+      left: "y + 2",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   },
     {name: 'room-8',
-      position_x: "x + 2",
-      position_y: "y + 2",
+      top: "x + 2",
+      left: "y + 2",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   }
@@ -69,7 +69,7 @@ var wordsArr ='';
 
 var input = $('#text-input');
 
-
+var protagonist_start_position = $('#protagonist').css('')
 
 function checkInput () {
   var user_answer = $input.val();
@@ -93,7 +93,8 @@ function askRiddle () {
 }
 
 function changeRooms () {
-  $('#protagonist').css('position', rooms[roomCount+1]['position_x'],rooms[roomCount+1]['position_y'])
+  $('#protagonist').css('top', rooms[roomCount].top)
+  $('#protagonist').css('left', rooms[roomCount].left)
 }
 
 

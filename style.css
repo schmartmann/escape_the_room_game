@@ -79,13 +79,18 @@ float: left;
   background: red;
   border-radius: 25px;
   opacity: 1;
-  top: 30%;
-  left: 10%;
-  margin: 45px 50px;
+  top: 290px;
+  left: 350px;
 }
 
 #room-1 {
   background: url("img/room-1.jpg");
   background-size: auto;
   background-repeat: no-repeat;
+}
+
+#room-2 {
+    background: url("img/room-2.jpg");
+    background-size: auto;
+    background-repeat: no-repeat;
 }
