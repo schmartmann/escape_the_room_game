@@ -1,14 +1,21 @@
+body {
+  background-color: #001848;
+  opacity: 1.9;
+}
+
 .container {
   height: 1000px;
   width: 1000px;
-  border: 1px solid black;
-  margin: 0 auto;
+/*   border: 1px solid black;
+ */
+ margin: 0 auto;
 }
 
 .gameboard {
   height: 1000px;
   width: 1000px;
-  border: 1px solid red;
+/*   border: 1px solid red;
+ */
 }
 
 .status-bar {
@@ -16,9 +23,11 @@
   width: 1000px;
   margin: 0 auto;
   padding: 0px;
-  border: 1px solid blue;
+/*   border: 1px solid blue;
+ */
   text-align: left;
   display: inline;
+  background-color: #301860;
 }
 
 .status-bar li {
@@ -42,6 +51,9 @@ input {
   font-size: 20px;
   float:left;
   padding: 0px 10px;
+  background-color: #604878;
+  opacity: 0.3;
+  color: black;
 }
 
 .timer {

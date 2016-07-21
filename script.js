@@ -6,53 +6,53 @@ var rooms = [
       top: "290px",
       left: "350px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem nam id, summo commune at mel. Sed possim concludaturque ea?",
-      answer: "torquatos"
+      answer: "gloriatur"
     },
      {name: 'room-1',
       top: "290px",
-      left: "450px",
+      left: "490px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name: 'room-2',
-      top: "290px",
-      left: "550px",
+      top: "360px",
+      left: "940px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name: 'room-3',
-      top: "x - 2",
-      left: "y + 1",
+      top: "590px",
+      left: "940px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name:'room-4',
-      top: "x + 1",
-      left: "y + 1",
+      top: "590px",
+      left: "540px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
    },
      {name: 'room-5',
-      top: "x + 2",
-      left: "y + 1",
+      top: "590px",
+      left: "140px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
    },
      {name: 'room-6',
-      top: "x",
-      left: "y + 2",
+      top: "880px",
+      left: "220px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   },
      {name: 'room-7',
-      top: "x + 1",
-      left: "y + 2",
+      top: "830px",
+      left: "640px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   },
     {name: 'room-8',
-      top: "x + 2",
-      left: "y + 2",
+      top: "830px",
+      left: "715px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
   }
@@ -67,7 +67,7 @@ var $timerText = $(".status-bar");
 
 var wordsArr ='';
 
-var input = $('#text-input');
+var input = $('#text-input').val();
 
 var protagonist_start_position = $('#protagonist').css('')
 
@@ -76,19 +76,24 @@ setInterval(function () {
 }, 250)
 
 function checkInput () {
-  var user_answer = $input.val();
-  if (user_answer === rooms[roomCount].answer) {
-    $('#prompt').html('<li id="prompt"> You got it! Let\'s move on!</li>')
-    setTimeout(function () {
-      // this is where we call back the function I'm going to build that takes
-      //in the the coordinates from the rooms array
-      //and uses those to update the .css() position of the "protag div"
-      //and then updates the room counter to 1! (SUPER IMPORTANT this come after the move function)
-      //and then adds 60/(roomCounter+1) to time
+  //captures the input, & splits into new array
+  var user_answer = input.split(' ');
+  //run if/else on each item in array
+  user_answer.forEach (function (word) {
+    //if word in rooms-x.answer matches
+    if (word === rooms[roomCount].answer) {
+      //update prompt
+    $('#prompt').html('<li id="prompt"> You got it! Let\'s move on!</li>');
+     //set timeout to move us to the next room
+     setTimeout(function () {
+      changeRooms();
+      roomCount ++;
+      timeLeft = timeLeft + (60/(roomCount))
     }, 1000)
   } else {
     $('#prompt').html('<li id="prompt"> Hmm, keep guessing!')
   }
+  })
 }
 
 //check room counter # and pull prompt from the array:
@@ -110,14 +115,6 @@ input.on('keypress', function (event) {
 });
 
 
-//make a timer and have it get increased by a certain amount for every correct answer you submit
-
-//build a function that takes in arguments from the arrayOfRooms to:
-//update the status text
-//fetch the input text
-//verify if the input text is correct
-//if the input text is correct, update the position of the protagonist div
-
 //reach features:
 //obscure div that the player isn't it
 //have a loading screen with "click anywhere" instructions
@@ -132,7 +129,7 @@ var setTimer = setInterval(function countDown() {
     clearInterval(setTimer);
   } else {
     $timerText.html("<li class='timer'> <strong>"+timeLeft+"</strong> seconds<br>before your<br> ride leaves!</li>");
-    timeLeft = timeLeft - 1;
+    timeLeft --;
   }
 }, 1000)
 
