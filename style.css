@@ -1,0 +1,85 @@
+.container {
+  height: 1000px;
+  width: 1000px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.gameboard {
+  height: 1000px;
+  width: 1000px;
+  border: 1px solid red;
+}
+
+.status-bar {
+  height: 75px;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0px;
+  border: 1px solid blue;
+  text-align: left;
+  display: inline;
+}
+
+.status-bar li {
+  padding: 0px 10px;
+}
+
+ul {
+  float: left;
+  display: inline;
+}
+
+#prompt {
+  display: inline;
+  font-size: 20px;
+  list-style: none;
+}
+
+input {
+  height: 35px;
+  width: 977px;
+  font-size: 20px;
+  float:left;
+  padding: 0px 10px;
+}
+
+.timer {
+  border: 1px dashed black;
+  text-transform: uppercase;
+  display: inline-block;
+  float: right;
+}
+
+.row {
+height: 293px;
+width: 998px;
+/* background: darkgreen;
+ */
+border: 1px solid black;
+float: left;
+}
+
+.room {
+  overflow: auto;
+  margin: 0 auto;
+  height: 289px;
+  width: 327px;
+  background: lightskyblue;
+  border: 1px solid yellow;
+  display: inline-block;
+}
+
+
+#protagonist {
+  position: absolute;
+  transition-duration: 1s;
+  height: 25px;
+  width: 25px;
+  background: red;
+  border-radius: 25px;
+  opacity: 1;
+  top: 30%;
+  left: 10%;
+  margin: 45px 50px;
+}
