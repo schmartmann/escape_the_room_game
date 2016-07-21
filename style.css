@@ -83,14 +83,65 @@ float: left;
   left: 350px;
 }
 
-#room-1 {
+#room-0 {
   background: url("img/room-1.jpg");
   background-size: auto;
   background-repeat: no-repeat;
 }
 
-#room-2 {
+#room-1 {
     background: url("img/room-2.jpg");
-    background-size: auto;
+    background-size: 163%;
+    background-position-x: -70px;
+    background-position-y: -30px;
     background-repeat: no-repeat;
 }
+
+#room-2 {
+    background: url("img/room-3.jpg");
+    background-size: 187%;
+    background-repeat: no-repeat;
+    background-position-x: -193px;
+    background-position-y: 23px;
+}
+
+#room-3 {
+    background: url("img/room-4.jpg");
+    background-size: 117%;
+    background-repeat: no-repeat;
+}
+
+#room-4 {
+    background: url("img/room-5.jpg");
+    background-size: 104%;
+    background-position-y: -87px;
+    background-repeat: no-repeat;
+}
+
+#room-5 {
+    background: url("img/room-6.jpg");
+    background-size: 137%;
+    background-position-x: -50px;
+    background-repeat: no-repeat;
+}
+
+#room-6 {
+    background: url("img/room-7.jpg");
+    background-size: 131%;
+    background-position-x: -51px;
+    background-repeat: no-repeat;
+}
+
+#room-7 {
+    background: url("img/room-8.jpg");
+    background-size: 116%;
+    background-position-x: -35px;
+    background-repeat: no-repeat;
+}
+
+#room-8 {
+    background: url("img/room-9.jpg");
+    background-size: 236%;
+    background-repeat: no-repeat;
+}
+

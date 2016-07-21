@@ -9,14 +9,14 @@ var rooms = [
       answer: "torquatos"
     },
      {name: 'room-1',
-      top: "x + 1",
-      left: "y",
+      top: "290px",
+      left: "450px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
      {name: 'room-2',
-      top: "x + 2",
-      left: "y",
+      top: "290px",
+      left: "550px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
       answer: "gloriatur"
     },
@@ -70,6 +70,10 @@ var wordsArr ='';
 var input = $('#text-input');
 
 var protagonist_start_position = $('#protagonist').css('')
+
+setInterval(function () {
+  $('#protagonist').css('display', 'none')
+}, 250)
 
 function checkInput () {
   var user_answer = $input.val();
