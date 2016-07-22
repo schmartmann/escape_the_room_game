@@ -1,6 +1,7 @@
 body {
-  background-color: #001848;
-  opacity: 1.9;
+  background-color: #000636;
+  opacity: 1;
+  font-family: 'Permanent Marker', cursive;
 }
 
 .container {
@@ -11,8 +12,14 @@ body {
  margin: 0 auto;
 }
 
+#text-output {
+  position: fixed;
+  margin-top: -99px;
+}
+
 .gameboard {
-  height: 1000px;
+  margin-top: 100px;
+  height: 900px;
   width: 1000px;
 /*   border: 1px solid red;
  */
@@ -32,6 +39,7 @@ body {
 
 .status-bar li {
   padding: 0px 10px;
+  color: #ff9329;
 }
 
 ul {
@@ -41,35 +49,43 @@ ul {
 
 #prompt {
   display: inline;
-  font-size: 20px;
+  font-size: 18px;
   list-style: none;
 }
 
 input {
   height: 35px;
   width: 977px;
-  font-size: 20px;
+  font-size: 16px;
+  font-family:'Permanent Marker', cursive;
   float:left;
-  padding: 0px 10px;
+  padding: 0px 11px;
+  border: 1px solid #000636;
   background-color: #604878;
-  opacity: 0.3;
-  color: black;
+  opacity: 0.8;
+  color: navajowhite;
 }
 
 .timer {
-  border: 1px dashed black;
-  text-transform: uppercase;
+/*   border: 1px dashed black;
+ */  text-transform: uppercase;
   display: inline-block;
   float: right;
 }
 
+#top-row {
+  margin-top: 13px;
+}
+
 .row {
+margin-left: 200px;
+margin-right: 200px;
 height: 293px;
 width: 998px;
 /* background: darkgreen;
  */
-border: 1px solid black;
-float: left;
+/* border: 1px solid black;
+ */float: left;
 }
 
 .room {
@@ -77,8 +93,7 @@ float: left;
   margin: 0 auto;
   height: 289px;
   width: 327px;
-  background: lightskyblue;
-  border: 1px solid yellow;
+  border: 1px solid #ff9329;
   display: inline-block;
 }
 
@@ -93,6 +108,11 @@ float: left;
   opacity: 1;
   top: 290px;
   left: 350px;
+}
+
+#protagonist.blink {
+  opacity: 0.4;
+  transition: opacity 1.5s ease-in-out;
 }
 
 #room-0 {
