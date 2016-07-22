@@ -7,9 +7,7 @@ body {
 .container {
   height: 1000px;
   width: 1000px;
-/*   border: 1px solid black;
- */
- margin: 0 auto;
+  margin: 0 auto;
 }
 
 #text-output {
@@ -17,28 +15,18 @@ body {
   margin-top: -99px;
 }
 
-.gameboard {
-  margin-top: 100px;
-  height: 900px;
-  width: 1000px;
-/*   border: 1px solid red;
- */
-}
-
 .status-bar {
   height: 75px;
   width: 1000px;
   margin: 0 auto;
-  padding: 0px;
-/*   border: 1px solid blue;
- */
+  padding: 0px 10px;
   text-align: left;
   display: inline;
   background-color: #301860;
 }
 
 .status-bar li {
-  padding: 0px 10px;
+  padding: 0px 0px;
   color: #ff9329;
 }
 
@@ -55,11 +43,11 @@ ul {
 
 input {
   height: 35px;
-  width: 977px;
+  width: 1019px;
   font-size: 16px;
   font-family:'Permanent Marker', cursive;
   float:left;
-  padding: 0px 11px;
+  padding: 0px 0px;
   border: 1px solid #000636;
   background-color: #604878;
   opacity: 0.8;
@@ -67,11 +55,18 @@ input {
 }
 
 .timer {
-/*   border: 1px dashed black;
- */  text-transform: uppercase;
+  text-transform: uppercase;
   display: inline-block;
+  position:fixed;
   float: right;
 }
+
+.gameboard {
+  margin-top: 100px;
+  height: 900px;
+  width: 1000px;
+}
+
 
 #top-row {
   margin-top: 13px;
@@ -82,11 +77,10 @@ margin-left: 200px;
 margin-right: 200px;
 height: 293px;
 width: 998px;
-/* background: darkgreen;
- */
-/* border: 1px solid black;
- */float: left;
+float: left;
 }
+
+
 
 .room {
   overflow: auto;
@@ -97,23 +91,6 @@ width: 998px;
   display: inline-block;
 }
 
-
-#protagonist {
-  position: absolute;
-  transition-duration: 1s;
-  height: 25px;
-  width: 25px;
-  background: red;
-  border-radius: 25px;
-  opacity: 1;
-  top: 280px;
-  left: 500px;
-}
-
-#protagonist.blink {
-  opacity: 0.4;
-  transition: opacity 1.5s ease-in-out;
-}
 
 #room-0 {
   background: url("img/room-1.jpg");
@@ -175,5 +152,22 @@ width: 998px;
     background: url("img/room-9.jpg");
     background-size: 236%;
     background-repeat: no-repeat;
+}
+
+#protagonist {
+  position: absolute;
+  transition-duration: 1s;
+  height: 25px;
+  width: 25px;
+  background: red;
+  border-radius: 25px;
+  opacity: 1;
+  top: 280px;
+  left: 500px;
+}
+
+#protagonist.blink {
+  opacity: 0.4;
+  transition: opacity 1.5s ease-in-out;
 }
 

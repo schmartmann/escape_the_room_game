@@ -29,10 +29,10 @@ var rooms = [
      {name: 'room-3',
       top: "550px",
       left: "940px",
-      prompt: "Which suit of armor did you wear to this party? They all look the same!<br>Classic house party problem.",
+      prompt: "Which suit of armor did you wear to this party? Classic house party problem.",
       reject: "That looks like someone else's: maybe in the middle?",
       answer: "middle",
-      reveal: "Phew! Can you imagine how embarrassing it would be to leave wearing someone ELSE's suit of armor?"
+      reveal: "Phew! Imagine how embarrassing it'd be to leave wearing someone ELSE's armor?"
     },
      {name:'room-4',
       top: "900px",
@@ -46,7 +46,7 @@ var rooms = [
      // kitchen
       top: "860px",
       left: "810px",
-      prompt: "Which one of these burners did you turn on?<br>A sentence for negligent arson will really eat into your Netflix time.",
+      prompt: "Which one of these burners did you turn on? <br>A negligent arson sentence will really eat into your Netflix time.",
       reject: "Well, you're right handed: what would Inspector Poirot say about that? ",
       answer: "right",
       reveal: "Oh yeah, this water is hella boiled. Turned off!"
@@ -72,7 +72,7 @@ var rooms = [
     {name: 'room-8',
       top: "1400px",
       left: "350px",
-      prompt: "driveway",
+      prompt: "The adventure continues in the sequel...<strong>Forced Small Talk With Your Uber Driver</strong>",
       reject: "",
       answer: "gloriatur",
       reveal: "You made it out in one piece!"
@@ -140,8 +140,9 @@ $(input).on('keypress', function (event) {
   if (event.which === 13) {
       checkInput();
       input.val('');
-      if (roomCount === 78) {
-        alert("You made it out! Phew!")
+      if (roomCount >= 7) {
+          $timerText.html('<li class="timer">You made it!</li>');
+          alert('You made it!');
       } else {};
   } else {}
 });
@@ -157,7 +158,6 @@ $(input).on('keypress', function (event) {
 //bounce player back to previous room if input !== correct
 
 
-//set interval to run countDown function 1x per second
 $('.container').on('click' , function () {
   $('.container').off();
   var setTimer = setInterval(function countDown() {
@@ -167,14 +167,14 @@ $('.container').on('click' , function () {
         clearInterval(setTimer);
       } else {
         $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
-        $timerText.append("<li class='timer'> <strong>"+timeLeft+"</strong> seconds<br>before your<br> ride leaves!</li>");
+        $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
         timeLeft--;
       }
     }, 1000)
 })
 
-$timerText.html('<li id="prompt">You\'re just a red circle at a tedious house party!</li>')
-$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your ride abandons you!</li>')
+$timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>')
+$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>')
 $timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>')
 
 
