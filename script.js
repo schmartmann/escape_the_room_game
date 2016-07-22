@@ -21,55 +21,59 @@ var rooms = [
      {name: 'room-2',
       top: "630px",
       left: "560px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      reject: "asdfasd",
+      prompt: "bathroom",
+      reject: "no",
       answer: "gloriatur",
-      reveal: "adfasdfas"
+      reveal: "leave bathroom"
     },
      {name: 'room-3',
-      top: "630px",
-      left: "560px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      reject: "asdfasdfa",
-      answer: "gloriatur",
-      reveal: "asdfasdf"
-    },
-     {name:'room-4',
       top: "550px",
       left: "940px",
-      prompt: "Which suit of armor did you wear to this party? They all look the same! Classic house party problem.",
+      prompt: "Which suit of armor did you wear to this party? They all look the same!<br>Classic house party problem.",
       reject: "That looks like someone else's: maybe in the middle?",
       answer: "middle",
       reveal: "Phew! Can you imagine how embarrassing it would be to leave wearing someone ELSE's suit of armor?"
-   },
-     {name: 'room-5',
+    },
+     {name:'room-4',
       top: "900px",
       left: "500px",
-      prompt: "Which one of these burners did you turn on? The longer you spend here detained for accidentally burning it down, the longer you have to wait to rewatch something on Netflix for the 1000th time.",
+      prompt: "carpet room",
+      reject: "no",
+      answer: "gloriatur",
+      reveal: "leave carpet room"
+   },
+     {name: 'room-5',
+     // kitchen
+      top: "860px",
+      left: "810px",
+      prompt: "Which one of these burners did you turn on?<br>A sentence for negligent arson will really eat into your Netflix time.",
       reject: "Well, you're right handed: what would Inspector Poirot say about that? ",
       answer: "right",
       reveal: "Oh yeah, this water is hella boiled. Turned off!"
    },
      {name: 'room-6',
+     //computer room
       top: "1200px",
       left: "500px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      reject: "asdfasdf",
+      prompt: "computer room",
+      reject: "no",
       answer: "gloriatur",
-      reveal: "asdfasdfasd"
+      reveal: "leave computer room"
   },
      {name: 'room-7',
+     //living room
       top: "1050px",
       left: "900px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      reject: "asdfasdfasd",
+      prompt: "living room",
+      reject: "no",
       answer: "gloriatur",
-      reveal: "adfasd"
+      reveal: "leave living room"
   },
     {name: 'room-8',
       top: "1400px",
       left: "350px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
+      prompt: "driveway",
+      reject: "",
       answer: "gloriatur",
       reveal: "You made it out in one piece!"
   }
@@ -106,7 +110,7 @@ function checkInput () {
       //that should then be reflected in the function below
       changeRooms();
       //add more time
-      timeLeft = timeLeft + (60/(roomCount))
+      timeLeft = timeLeft + Math.floor((60/(roomCount)))
       }, 1000)
   } else {
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>')
@@ -136,6 +140,9 @@ $(input).on('keypress', function (event) {
   if (event.which === 13) {
       checkInput();
       input.val('');
+      if (roomCount === 78) {
+        alert("You made it out! Phew!")
+      } else {};
   } else {}
 });
 
