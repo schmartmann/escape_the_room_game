@@ -19,7 +19,7 @@ var rooms = [
       reveal: "Yup! The only 'honest' feedback most people really want"
     },
      {name: 'room-2',
-      top: "630px",
+      top: "645px",
       left: "560px",
       prompt: "bathroom",
       reject: "no",
@@ -46,10 +46,10 @@ var rooms = [
      // kitchen
       top: "860px",
       left: "810px",
-      prompt: "Which one of these burners did you turn on? <br>A negligent arson sentence will really eat into your Netflix time.",
+      prompt: "Which one of these burners did you turn on?",
       reject: "Well, you're right handed: what would Inspector Poirot say about that? ",
       answer: "right",
-      reveal: "Oh yeah, this water is hella boiled. Turned off!"
+      reveal: "Oh yeah, A negligent arson sentence will really eat into your Netflix time."
    },
      {name: 'room-6',
      //computer room
@@ -72,7 +72,7 @@ var rooms = [
     {name: 'room-8',
       top: "1400px",
       left: "350px",
-      prompt: "The adventure continues in the sequel...<strong>Forced Small Talk With Your Uber Driver</strong>",
+      prompt: "The adventure continues in the sequel...'Forced Small Talk With Your Uber Driver'",
       reject: "",
       answer: "gloriatur",
       reveal: "You made it out in one piece!"
@@ -90,8 +90,8 @@ var input = $('#text-input');
 
 $('#protagonist').css({'top' : '280px', 'left' : '500px'})
 
-// setInterval(function () {
-//   $('#protagonist').toggleClass('blink')}, 1500)
+setInterval(function () {
+  $('#protagonist').toggleClass('blink')}, 1500)
 
 function checkInput () {
   //captures the input, & splits into new array
@@ -119,13 +119,13 @@ function checkInput () {
 }
 
 //check room counter # and pull prompt from the array:
-function askRiddle () {
-    $('#prompt').html('<li id="prompt">'+rooms[roomCounter].prompt+'</li>');
-}
+// function askRiddle () {
+//     $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
+// }
 
 function changeRooms () {
-  $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left });
-  $
+  $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left});
+  setTimeout(function(){$('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')}, 4000)
 }
 
 function spawnRoom () {
@@ -141,8 +141,8 @@ $(input).on('keypress', function (event) {
       checkInput();
       input.val('');
       if (roomCount >= 7) {
-          $timerText.html('<li class="timer">You made it!</li>');
           alert('You made it!');
+          $timerText.html('<li class="timer">You made it!</li>');
       } else {};
   } else {}
 });
@@ -163,7 +163,7 @@ $('.container').on('click' , function () {
   var setTimer = setInterval(function countDown() {
       if (timeLeft === 0) {
         $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
-        console.log("Your ride left without you! Looks like you're spending the night here.");
+        alert("Your ride left without you! Looks like you're spending the night here.");
         clearInterval(setTimer);
       } else {
         $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
@@ -173,10 +173,10 @@ $('.container').on('click' , function () {
     }, 1000)
 })
 
-$timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>')
-$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>')
-$timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>')
-
+$timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>');
+$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>');
+$timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>');
+// $timertext.html('<li class="timer">Timer</li>')
 
 //bottom
 });

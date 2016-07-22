@@ -4,12 +4,14 @@ body {
   font-family: 'Permanent Marker', cursive;
 }
 
+/*this the container*/
 .container {
   height: 1000px;
   width: 1000px;
   margin: 0 auto;
 }
 
+/*this is the bar itself + input bar*/
 #text-output {
   position: fixed;
   margin-top: -99px;
@@ -20,20 +22,29 @@ body {
   width: 1000px;
   margin: 0 auto;
   padding: 0px 10px;
-  text-align: left;
-  display: inline;
+  display: inline-block;
   background-color: #301860;
 }
 
 .status-bar li {
   padding: 0px 0px;
   color: #ff9329;
+  display: inline-block;
 }
 
 ul {
   float: left;
-  display: inline;
+  display: inline-block;
 }
+
+.timer {
+  text-transform: uppercase;
+  display: inline-block;
+  position:relative;
+  margin-left: 870px;
+  margin-top: -30px;
+}
+
 
 #prompt {
   display: inline;
@@ -54,12 +65,7 @@ input {
   color: navajowhite;
 }
 
-.timer {
-  text-transform: uppercase;
-  display: inline-block;
-  position:fixed;
-  float: right;
-}
+
 
 .gameboard {
   margin-top: 100px;
