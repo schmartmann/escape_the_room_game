@@ -19,46 +19,59 @@ var rooms = [
       reveal: "Yup! The only 'honest' feedback most people really want"
     },
      {name: 'room-2',
-      top: "360px",
-      left: "940px",
+      top: "630px",
+      left: "560px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      reject: "asdfasd",
+      answer: "gloriatur",
+      reveal: "adfasdfas"
     },
      {name: 'room-3',
-      top: "590px",
-      left: "940px",
+      top: "630px",
+      left: "560px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      reject: "asdfasdfa",
+      answer: "gloriatur",
+      reveal: "asdfasdf"
     },
      {name:'room-4',
-      top: "590px",
-      left: "540px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      top: "550px",
+      left: "940px",
+      prompt: "Which suit of armor did you wear to this party? They all look the same! Classic house party problem.",
+      reject: "That looks like someone else's: maybe in the middle?",
+      answer: "middle",
+      reveal: "Phew! Can you imagine how embarrassing it would be to leave wearing someone ELSE's suit of armor?"
    },
      {name: 'room-5',
-      top: "590px",
-      left: "140px",
-      prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      top: "900px",
+      left: "500px",
+      prompt: "Which one of these burners did you turn on? The longer you spend here detained for accidentally burning it down, the longer you have to wait to rewatch something on Netflix for the 1000th time.",
+      reject: "Well, you're right handed: what would Inspector Poirot say about that? ",
+      answer: "right",
+      reveal: "Oh yeah, this water is hella boiled. Turned off!"
    },
      {name: 'room-6',
-      top: "880px",
-      left: "220px",
+      top: "1200px",
+      left: "500px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      reject: "asdfasdf",
+      answer: "gloriatur",
+      reveal: "asdfasdfasd"
   },
      {name: 'room-7',
-      top: "830px",
-      left: "640px",
+      top: "1050px",
+      left: "900px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      reject: "asdfasdfasd",
+      answer: "gloriatur",
+      reveal: "adfasd"
   },
     {name: 'room-8',
-      top: "830px",
-      left: "715px",
+      top: "1400px",
+      left: "350px",
       prompt: "Lorem ipsum dolor sit amet, doctus mediocritatem",
-      answer: "gloriatur"
+      answer: "gloriatur",
+      reveal: "You made it out in one piece!"
   }
 ]
 
@@ -85,7 +98,7 @@ function checkInput () {
     //if word in rooms-x.answer matches
     if (word === rooms[roomCount].answer) {
       //update prompt
-    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reveal'</li>');
+    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reveal+'</li>');
      //set timeout to move us to the next room
      setTimeout(function () {
       //increase roomCount number
@@ -96,7 +109,7 @@ function checkInput () {
       timeLeft = timeLeft + (60/(roomCount))
       }, 1000)
   } else {
-    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject'</li>')
+    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>')
   }
   })
 }
