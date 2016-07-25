@@ -136,22 +136,6 @@ function LightsOn () {
 }
 
 
-function checkWin () {
-    if (roomCount >= 8) {
-      $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
-      // alert('You made it!');
-      clearInterval(setTimer);
-      $timerText.append('<li class="timer">You made it!</li>');
-      $('#room-8').css('opacity', '1')
-  } else {};
-}
-
-function checkTimer () {
-
-}
-
-
-
 $('.container').on('click', function () {
   //make it so you can only click 1x to start
   $('.container').off();
@@ -169,18 +153,25 @@ $('.container').on('click', function () {
         timeLeft--;
   }
   }, 1000);
+    $(input).on('keypress', function (event) {
+        if (event.which === 13) {
+          checkInput();
+          input.val('');
+            if (roomCount >= 8) {
+              $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+              // alert('You made it!');
+              clearInterval(setTimer);
+              $timerText.append('<li class="timer">You made it!</li>');
+              $('#room-8').css('opacity', '1')
+                } else {};
+        } else {
+          $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
+        };
+        })
 })
 
 //jquery selector to grab the text from the input bar
-$(input).on('keypress', function (event) {
-    if (event.which === 13) {
-      checkInput();
-      input.val('');
-      checkWin();
-    } else {
-      // $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
-    };
-    })
+
 
 //reach features:
 

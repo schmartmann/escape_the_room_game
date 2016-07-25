@@ -36,3 +36,4 @@ A global variable (roomCounter) goes up when the player successfully answers a q
 - some text prompts display for irregular amounts of time. I believe this is perhaps due to the setInterval in the timer’s function overwriting the text-prompt, but wasn’t able to satisfactorily resolve the error. 
 - was not able to get an interstitial screen to properly display when transition between rooms. 
 - the <li> containing the timer shifts positions at the end - was not able to keep its location fixed 100%. 
+- the .css() top + left transitions don’t animate smoothly consistently - again, I feel like this has something to do with the setIntervals.
