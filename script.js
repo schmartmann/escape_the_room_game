@@ -48,7 +48,7 @@ var rooms = [
       top: "860px",
       left: "810px",
       prompt: "Which one of these burners did you turn on?",
-      reject: "Well, you're right handed: what would Inspector Poirot say about that? ",
+      reject: "Assume you're right handed... and that stove top burners always match your dominant hand...",
       answer: "right",
       reveal: "Oh yeah, A negligent arson sentence will really eat into your Netflix time."
    },
@@ -146,23 +146,28 @@ function checkWin () {
   } else {};
 }
 
+function checkTimer () {
+
+}
+
+
 
 $('.container').on('click', function () {
   //make it so you can only click 1x to start
   $('.container').off();
   //create a setInterval to 1x per second update timer text & timer--
     var setTimer = setInterval(function () {
-    if (timeLeft === 0) {
-      //if time has run out, suspend timer & display game over text
-      $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
-      alert("Your ride left without you! Looks like you're spending the night here.");
-      clearInterval(setTimer);
-    } else {
-      $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
-      LightsOn();
-      $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
-      timeLeft--;
-    }
+        if (timeLeft === 0) {
+  //if time has run out, suspend timer & display game over text
+        $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
+        alert("Your ride left without you! Looks like you're spending the night here.");
+        clearInterval(setTimer);
+  } else {
+        $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+        LightsOn();
+        $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
+        timeLeft--;
+  }
   }, 1000);
 })
 
