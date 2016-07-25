@@ -33,6 +33,7 @@ body {
 }
 
 ul {
+  position: ;
   float: left;
   display: inline-block;
 }
@@ -158,6 +159,10 @@ float: left;
     background: url("img/room-9.jpg");
     background-size: 236%;
     background-repeat: no-repeat;
+}
+
+.room {
+  opacity: 0.3;
 }
 
 #protagonist {

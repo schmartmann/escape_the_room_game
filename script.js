@@ -72,9 +72,9 @@ var rooms = [
     {name: 'room-8',
       top: "1400px",
       left: "350px",
-      prompt: "You made i! The adventure continues in the sequel...<br>'Forced Small Talk With Your Uber Driver'",
+      prompt: "You made it! The adventure continues in the sequel...'Forced Small Talk With Your Uber Driver'",
       reject: "",
-      answer: "gloriatur",
+      answer: "",
       reveal: "You made it out in one piece!"
   }
 ]
@@ -111,9 +111,9 @@ function checkInput () {
       // }, 3000)
   } else {
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
-    setTimeout( function() {
-    $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
-    }, 5000)
+    // setTimeout( function() {
+    // $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
+    // }, 5000)
   }
   })
 }
@@ -122,6 +122,11 @@ function changeRooms () {
   $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left});
   $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
 }
+
+function LightsOn () {
+  $('#room-' + roomCount).css('opacity', '1');
+}
+
 
 function spawnRoom () {
   roomCount = 0;
@@ -139,6 +144,7 @@ $('.container').on('click', function () {
       clearInterval(setTimer);
     } else {
       $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+      LightsOn();
       $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
       timeLeft--;
     }
@@ -148,11 +154,15 @@ $('.container').on('click', function () {
           checkInput();
           input.val('');
               if (roomCount >= 8) {
-                alert('You made it!');
+                $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+                // alert('You made it!');
                 clearInterval(setTimer);
-                $timerText.html('<li class="timer">You made it!</li>');
-          } else {};
-          } else {}
+                $timerText.append('<li class="timer">You made it!</li>');
+                $('#room-8').css('opacity', '1')
+              } else {};
+        } else {
+          $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
+        };
         })
 })
 
