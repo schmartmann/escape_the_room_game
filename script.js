@@ -22,7 +22,7 @@ var rooms = [
       top: "645px",
       left: "560px",
       prompt: "Outside the bathroom, you notice a terrible painting. What is that even supposed to be?",
-      reject: "Maybe that blue tgubg at the bottom is supposed to be the ocean?...",
+      reject: "Maybe that blue thing at the bottom is supposed to be the ocean?...",
       answer: "boat",
       reveal: "You learn as much from bad art as you do from good art."
     },
@@ -110,6 +110,7 @@ function checkInput () {
         timeLeft = timeLeft + Math.floor((60/(roomCount)))
       // }, 3000)
   } else {
+    rooms[roomCount].prompt = rooms[roomCount].reject
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
     // setTimeout( function() {
     // $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
@@ -128,13 +129,6 @@ function LightsOn () {
 }
 
 
-function spawnRoom () {
-  roomCount = 0;
-  input.val(' ')
-  $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left });
-  $('#prompt').html('<li id="prompt">' + rooms[roomCount].prompt+'</li>')
-}
-
 $('.container').on('click', function () {
   $('.container').off();
     var setTimer = setInterval(function () {
@@ -148,7 +142,7 @@ $('.container').on('click', function () {
       $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
       timeLeft--;
     }
-  }, 1000)
+  }, 1000);
     $(input).on('keypress', function (event) {
         if (event.which === 13) {
           checkInput();
