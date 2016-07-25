@@ -21,10 +21,10 @@ var rooms = [
      {name: 'room-2',
       top: "645px",
       left: "560px",
-      prompt: "bathroom",
-      reject: "no",
-      answer: "gloriatur",
-      reveal: "leave bathroom"
+      prompt: "Outside the bathroom, you notice a terrible painting. What is that even supposed to be?",
+      reject: "Maybe that blue tgubg at the bottom is supposed to be the ocean?...",
+      answer: "boat",
+      reveal: "You learn as much from bad art as you do from good art."
     },
      {name: 'room-3',
       top: "550px",
@@ -37,10 +37,10 @@ var rooms = [
      {name:'room-4',
       top: "900px",
       left: "500px",
-      prompt: "carpet room",
-      reject: "no",
-      answer: "gloriatur",
-      reveal: "leave carpet room"
+      prompt: "That book on the table is the one you loaned your friend years ago. What do you do?",
+      reject: "You've definitely brought it up with them more than once...",
+      answer: "take",
+      reveal: "I bet they didn't even start reading it!"
    },
      {name: 'room-5',
      // kitchen
@@ -55,24 +55,24 @@ var rooms = [
      //computer room
       top: "1200px",
       left: "500px",
-      prompt: "computer room",
-      reject: "no",
-      answer: "gloriatur",
-      reveal: "leave computer room"
+      prompt: "Oh, wow, it's an acquaintance from middle school. He wants to know how life has been since?",
+      reject: "Let's keep this briefer, shall we?",
+      answer: "good",
+      reveal: "Yeah, I mean, how else do you sum up decades of life? Sort of a rude question IMHO."
   },
      {name: 'room-7',
      //living room
       top: "1050px",
       left: "900px",
-      prompt: "living room",
-      reject: "no",
-      answer: "gloriatur",
-      reveal: "leave living room"
+      prompt: "So close, but you haven't said all your goodbyes! What style of goodbye do you use?",
+      reject: "Same name as a style of coffee that also makes you wander away wordlessly...",
+      answer: "irish",
+      reveal: "It's not like anybody ever says 'That was a really great Goodbye'."
   },
     {name: 'room-8',
       top: "1400px",
       left: "350px",
-      prompt: "The adventure continues in the sequel...'Forced Small Talk With Your Uber Driver'",
+      prompt: "You made i! The adventure continues in the sequel...<br>'Forced Small Talk With Your Uber Driver'",
       reject: "",
       answer: "gloriatur",
       reveal: "You made it out in one piece!"
@@ -90,62 +90,72 @@ var input = $('#text-input');
 
 $('#protagonist').css({'top' : '280px', 'left' : '500px'})
 
+$timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>');
+$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>');
+$timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>');
+
+
 setInterval(function () {
-  $('#protagonist').toggleClass('blink')}, 1500)
+  $('#protagonist').toggleClass('blink')}, 1000)
 
 function checkInput () {
-  //captures the input, & splits into new array
   var input = $('input').val()
   var user_answer = input.split(' ');
-  //run if/else on each item in array
   user_answer.forEach (function (word) {
-    //if word in rooms-x.answer matches
     if (word === rooms[roomCount].answer) {
-      //update prompt
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reveal+'</li>');
-     //set timeout to move us to the next room
-     setTimeout(function () {
-      //increase roomCount number
-      roomCount++;
-      //that should then be reflected in the function below
-      changeRooms();
-      //add more time
-      timeLeft = timeLeft + Math.floor((60/(roomCount)))
-      }, 1000)
+      // setTimeout( function() {
+        roomCount++;
+        changeRooms();
+        timeLeft = timeLeft + Math.floor((60/(roomCount)))
+      // }, 3000)
   } else {
-    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>')
+    $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
+    setTimeout( function() {
+    $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
+    }, 5000)
   }
   })
 }
 
-//check room counter # and pull prompt from the array:
-// function askRiddle () {
-//     $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
-// }
-
 function changeRooms () {
   $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left});
-  setTimeout(function(){$('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')}, 4000)
+  $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
 }
 
 function spawnRoom () {
   roomCount = 0;
-  // input.val(' ')
+  input.val(' ')
   $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left });
   $('#prompt').html('<li id="prompt">' + rooms[roomCount].prompt+'</li>')
 }
 
+$('.container').on('click', function () {
+  $('.container').off();
+    var setTimer = setInterval(function () {
+    if (timeLeft === 0) {
+      $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
+      alert("Your ride left without you! Looks like you're spending the night here.");
+      clearInterval(setTimer);
+    } else {
+      $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+      $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
+      timeLeft--;
+    }
+  }, 1000)
+    $(input).on('keypress', function (event) {
+        if (event.which === 13) {
+          checkInput();
+          input.val('');
+              if (roomCount >= 8) {
+                alert('You made it!');
+                clearInterval(setTimer);
+                $timerText.html('<li class="timer">You made it!</li>');
+          } else {};
+          } else {}
+        })
+})
 
-$(input).on('keypress', function (event) {
-  if (event.which === 13) {
-      checkInput();
-      input.val('');
-      if (roomCount >= 7) {
-          alert('You made it!');
-          $timerText.html('<li class="timer">You made it!</li>');
-      } else {};
-  } else {}
-});
 
 
 //reach features:
@@ -157,26 +167,6 @@ $(input).on('keypress', function (event) {
 //have a loading screen with "click anywhere" instructions
 //bounce player back to previous room if input !== correct
 
-
-$('.container').on('click' , function () {
-  $('.container').off();
-  var setTimer = setInterval(function countDown() {
-      if (timeLeft === 0) {
-        $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
-        alert("Your ride left without you! Looks like you're spending the night here.");
-        clearInterval(setTimer);
-      } else {
-        $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
-        $timerText.append("<li class='timer'><strong>"+timeLeft+"</strong> seconds<br>before your<br>ride leaves!</li>");
-        timeLeft--;
-      }
-    }, 1000)
-})
-
-$timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>');
-$timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>');
-$timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>');
-// $timertext.html('<li class="timer">Timer</li>')
 
 //bottom
 });
