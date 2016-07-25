@@ -2,6 +2,7 @@
 $(function(){
 
 var rooms = [
+//create array housing each room's attributes like display text, correct answer, and coordinates
      {name: 'room-0',
       top: "280px",
       left: "500px",
@@ -79,60 +80,80 @@ var rooms = [
   }
 ]
 
-
+//set a counter that increases as player successfully solves riddles
 var roomCount = 0;
 
-var timeLeft = 180;
+var timeLeft = 60;
 
 var $timerText = $(".status-bar");
 
 var input = $('#text-input');
-
+//protag default start location
 $('#protagonist').css({'top' : '280px', 'left' : '500px'})
 
 $timerText.html('<li id="prompt">You\'re a red circle at a tedious party, and you just want to go home!</li>');
 $timerText.append('<li id="prompt"><br>Grab your stuff & get out before your Uber driver abandons you!</li>');
 $timerText.append('<li id="prompt"><br>Click anywhere to begin!</li>');
 
-
+//make protagonist blink
 setInterval(function () {
   $('#protagonist').toggleClass('blink')}, 1000)
 
+//need a way to capture player text input and check it against the "answer" attribute of each room in the array
 function checkInput () {
+  //grab text from input bar
   var input = $('input').val()
+//split text on space into new array
   var user_answer = input.split(' ');
+  //do a for-each loop on each word of the input to check it against the "answer" in the rooms array
   user_answer.forEach (function (word) {
     if (word === rooms[roomCount].answer) {
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reveal+'</li>');
-      // setTimeout( function() {
+    //on successful answer, increase room count, update #protagonist div coordinates, and add time left
         roomCount++;
         changeRooms();
         timeLeft = timeLeft + Math.floor((60/(roomCount)))
-      // }, 3000)
   } else {
+    //on unsuccessful answer, display rejection prompt
     rooms[roomCount].prompt = rooms[roomCount].reject
     $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
-    // setTimeout( function() {
-    // $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
-    // }, 5000)
+    setTimeout( function() {
+    $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>');
+    }, 5000)
   }
   })
 }
 
+//on successful answer, use jQuery .css() method to update top & left properties to move #protag div
 function changeRooms () {
   $('#protagonist').css({'top' : rooms[roomCount].top, 'left' : rooms[roomCount].left});
   $('#prompt').html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
 }
 
+//un-dim room div that protagonist is currently in
 function LightsOn () {
   $('#room-' + roomCount).css('opacity', '1');
 }
 
 
+function checkWin () {
+    if (roomCount >= 8) {
+      $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
+      // alert('You made it!');
+      clearInterval(setTimer);
+      $timerText.append('<li class="timer">You made it!</li>');
+      $('#room-8').css('opacity', '1')
+  } else {};
+}
+
+
 $('.container').on('click', function () {
+  //make it so you can only click 1x to start
   $('.container').off();
+  //create a setInterval to 1x per second update timer text & timer--
     var setTimer = setInterval(function () {
     if (timeLeft === 0) {
+      //if time has run out, suspend timer & display game over text
       $timerText.html("<li class='timer'><strong>0</strong> seconds<br>before your<br> ride leaves!</li>");
       alert("Your ride left without you! Looks like you're spending the night here.");
       clearInterval(setTimer);
@@ -143,32 +164,21 @@ $('.container').on('click', function () {
       timeLeft--;
     }
   }, 1000);
-    $(input).on('keypress', function (event) {
-        if (event.which === 13) {
-          checkInput();
-          input.val('');
-              if (roomCount >= 8) {
-                $timerText.html('<li id="prompt">'+rooms[roomCount].prompt+'</li>')
-                // alert('You made it!');
-                clearInterval(setTimer);
-                $timerText.append('<li class="timer">You made it!</li>');
-                $('#room-8').css('opacity', '1')
-              } else {};
-        } else {
-          $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
-        };
-        })
 })
 
-
+//jquery selector to grab the text from the input bar
+$(input).on('keypress', function (event) {
+    if (event.which === 13) {
+      checkInput();
+      input.val('');
+      checkWin();
+    } else {
+      // $('#prompt').html('<li id="prompt">'+rooms[roomCount].reject+'</li>');
+    };
+    })
 
 //reach features:
-//obscure div that the player isn't it
 
-//^^^ this can be a function based off the room counter.
-//^^ maybe an if/else statement that applies .css('opacity', '0.4')
-
-//have a loading screen with "click anywhere" instructions
 //bounce player back to previous room if input !== correct
 
 
